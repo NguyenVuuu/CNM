@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa sản phẩm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            margin-top: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        .current-image {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .current-image img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✏️ Chỉnh sửa sản phẩm</h1>
+        
+        <form action="/products/edit/<%= product.productId %>" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Tên sản phẩm <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required value="<%= product.name %>" placeholder="Nhập tên sản phẩm">
+            </div>
+
+            <div class="form-group">
+                <label for="price">Giá <span class="required">*</span></label>
+                <input type="number" id="price" name="price" required step="0.01" min="0" value="<%= product.price %>" placeholder="Nhập giá sản phẩm">
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Số lượng <span class="required">*</span></label>
+                <input type="number" id="quantity" name="quantity" required min="0" value="<%= product.quantity %>" placeholder="Nhập số lượng tồn kho">
+            </div>
+
+            <div class="form-group">
+                <label for="image">Hình ảnh mới (để trống nếu không đổi)</label>
+                <input type="file" id="image" name="image" accept="image/*">
+                <small style="color: #999;">Chấp nhận: JPG, PNG, GIF (Tối đa 5MB)</small>
+
+                <% if (product.url_image) { %>
+                    <div class="current-image">
+                        <p style="color: #666; margin-bottom: 10px;">Hình ảnh hiện tại:</p>
+                        <img src="<%= product.url_image %>" alt="<%= product.name %>">
+                    </div>
+                <% } %>
+            </div>
+
+            <button type="submit" class="btn">💾 Cập nhật sản phẩm</button>
+            <a href="/products" class="btn btn-secondary">↩️ Quay lại</a>
+        </form>
+    </div>
+</body>
+</html>
+
