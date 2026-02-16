@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>➕ <%= title %></h1>
+        
+        <form action="/products/add" method="POST">
+            <div class="form-group">
+                <label for="name">Tên sản phẩm <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Nhập tên sản phẩm">
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Giá <span class="required">*</span></label>
+                <input type="number" id="price" name="price" required step="0.01" min="0" placeholder="Nhập giá sản phẩm">
+            </div>
+            
+            <div class="form-group">
+                <label for="quantity">Số lượng <span class="required">*</span></label>
+                <input type="number" id="quantity" name="quantity" required min="0" placeholder="Nhập số lượng tồn kho">
+            </div>
+            
+            <button type="submit" class="btn">💾 Lưu sản phẩm</button>
+            <a href="/products" class="btn btn-secondary">↩️ Quay lại</a>
+        </form>
+    </div>
+</body>
+</html>
+
