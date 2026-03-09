@@ -1,0 +1,18 @@
+<h1>Student List</h1>
+
+<form action="/add" method="POST">
+  <input type="text" name="name" placeholder="Name" required />
+  <input type="number" name="age" placeholder="Age" required />
+  <button type="submit">Add</button>
+</form>
+
+<ul>
+  <% students.forEach(student => { %>
+    <li>
+      <%= student.name %> - <%= student.age %>
+      <form action="/delete/<%= student.id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
